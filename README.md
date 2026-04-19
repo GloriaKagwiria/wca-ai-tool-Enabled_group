@@ -1,5 +1,5 @@
 # wca-ai-tool-Enabled_group
-## Team Members Names
+## Team Members' Names
 1. Gloria Kagwiria
 2. Pauline Kihiu
 3. Franklin Nzioki
