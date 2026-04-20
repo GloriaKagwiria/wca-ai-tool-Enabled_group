@@ -12,3 +12,12 @@ def get_topic():
         print("Topic cannot be empty.")
         return get_topic()  # ask again if empty
     return topic
+# Commit 3: Create get_difficulty function with validation
+# .lower() means "Easy", "EASY", and "easy" all work the same
+# Reject anything that isn't one of the three valid options
+def get_difficulty():
+    difficulty = input("Enter difficulty (easy, medium, hard): ").lower().strip()
+    if difficulty not in ["easy", "medium", "hard"]:
+        print("Invalid difficulty. Please enter easy, medium, or hard.")
+        return get_difficulty()  # ask again if invalid
+    return difficulty
