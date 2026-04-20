@@ -8,8 +8,7 @@ Rules:
 2. Avoid using ambiguous language.
 3. Each question must have 4 options (A, B, C, D) with only one correct answer.
 4. The correct answer should be indicated clearly.
-5. Avoid using technical jargon unless necessary.
-6. Make questions appropriate for the specified difficulty level.
+5. Make questions appropriate for the specified difficulty level.
 - Easy: Basic knowledge and understanding of the topic.
 - Medium: Requires application of knowledge and some critical thinking.
 - Hard: Requires deep understanding and analysis of the topic.
