@@ -1,3 +1,21 @@
+def build_prompt(topic,difficulty):
+    prompt = f"""
+Generate 5 {difficulty} difficulty question about {topic}.
+Difficulty level: {difficulty}
+
+Rules:
+1. Each question should be clear and concise.
+2. Avoid using ambiguous language.
+3. Each question must have 4 options (A, B, C, D) with only one correct answer.
+4. The correct answer should be indicated clearly.
+5. Avoid using technical jargon unless necessary.
+6. Make questions appropriate for the specified difficulty level.
+- Easy: Basic knowledge and understanding of the topic.
+- Medium: Requires application of knowledge and some critical thinking.
+- Hard: Requires deep understanding and analysis of the topic.
+"""
+    return prompt
+
 # Commit 1: Create the get_topic function
 # .strip() removes accidental spaces before or after the input
 def get_topic():
