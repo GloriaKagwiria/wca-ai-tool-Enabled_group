@@ -35,7 +35,7 @@
 1. Clone the Repository:
 - bash
 - git clone https://github.com
-- cd quiz-generator
+- cd quiz-generator_claude.py
 
 2. Install Dependencies:
 - (Ensure you have Python installed)
