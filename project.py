@@ -12,4 +12,4 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Something went wrong: {e}")
         
-        #Final version redy for review
+        #Final version ready for review
