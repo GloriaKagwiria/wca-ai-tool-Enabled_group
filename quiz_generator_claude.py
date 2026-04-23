@@ -19,10 +19,6 @@ import os
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 
-
-
-
-
 def build_prompt(topic,difficulty):
     prompt = f"""
 Generate 5 {difficulty} difficulty question about {topic}.
