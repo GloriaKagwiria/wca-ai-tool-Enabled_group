@@ -11,5 +11,6 @@ def generate_quiz(topic, difficulty):
     )
 
     
+  
     # Extract the text content from Claude's response
     return message.content[0].text
