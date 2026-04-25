@@ -32,7 +32,7 @@ are an expert educator who creates quizzes for students. Your task is to generat
 Generate a set of 5 multiple choice questions (MCQs) based on a specific topic and difficulty level.
 ### Context
 Topic: {topic}
-Difficulty:["easy "medium" "hard"]
+Difficulty:["easy" "medium" "hard"]
 ### Constraints
 1. Each question must have 4 answer options (A, B, C, D).
 2. Structure: Each question should be followed by its answer options, and the correct answer should be indicated.
@@ -43,7 +43,6 @@ Difficulty:["easy "medium" "hard"]
 4. Accuracy: Ensure that all questions and answers are factually correct and relevant to the specified topic.
 ### Output Format
 Return the response strictly in the following JSON format:
-```json
 {{
   "questions": [
     {{
