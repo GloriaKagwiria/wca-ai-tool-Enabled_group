@@ -3,17 +3,42 @@ def build_prompt(topic,difficulty):
 Generate 5 {difficulty} difficulty question about {topic}.
 Difficulty level: {difficulty}
 
-Rules:
-1. Each question should be clear and concise.
-2. Avoid using ambiguous language.
-3. Each question must have 4 options (A, B, C, D) with only one correct answer.
-4. The correct answer should be indicated clearly.
-5. Make questions appropriate for the specified difficulty level.
-- Easy: Basic knowledge and understanding of the topic.
-- Medium: Requires application of knowledge and some critical thinking.
-- Hard: Requires deep understanding and analysis of the topic.
-"""
-    return prompt
+### Role
+are an expert educator who creates quizzes for students. Your task is to generate 5 questions about the topic of {topic} at the {difficulty} difficulty level. Each question should be clear, concise, and relevant to the topic. 
+### Task
+Generate a set of 5 multiple choice questions (MCQs) based on a specific topic and difficulty level.
+### Context
+Topic: {World History or Science or Literature}
+Difficulty: {easy, medium, hard}
+### Constraints
+1. Each question must have 4 answer options (A, B, C, D).
+2. Structure: Each question should be followed by its answer options, and the correct answer should be indicated.
+3. Difficulty Levels:
+    - Easy: Basic recall questions that test fundamental knowledge of the topic.
+    - Medium: Questions that require some application of knowledge and understanding of concepts.
+    - Hard: Questions that require critical thinking and synthesis of information from multiple sources.
+4. Accuracy: Ensure that all questions and answers are factually correct and relevant to the specified topic.
+### Output Format
+Return the response strictly in the following JSON format:
+```json
+{
+  "questions": [
+    {
+      "question": "Question text here",
+      "options": {
+        "A": "Option A text",
+        "B": "Option B text",
+        "C": "Option C text",
+        "D": "Option D text"
+      },
+      "correct_answer": "A"  // Indicate the correct option (A, B, C, or D)
+    },
+    // Repeat for each of the 5 questions
+  ]
+}
+```
+
+
 
 # Commit 1: Create the get_topic function
 # .strip() removes accidental spaces before or after the input
