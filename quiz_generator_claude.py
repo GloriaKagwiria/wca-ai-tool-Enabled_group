@@ -1,3 +1,24 @@
+#==============================================================
+# QUIZ GENERATOR- ENABLED GROUP-PROJECT(Powered by claude AI)
+# Members : 1(Setup) |2 (Prompt) |3 (API) |4(Input) |5(Main)
+# How to run : python quiz_generator.py
+#===============================================================
+
+#===============================================================
+# Member 1- Project Setup $ API Configuration
+# Commit 1: Add project imports
+# Commit 2: Configure anthropic client using environment variable
+# Commit 3: Add project-level documentation and header comments
+#================================================================
+
+import anthropic
+import os
+
+# The API key is loaded from the environment variable ANTHROPIC_API_KEY
+# To set it permanently, run : setx ANTHROPIC_API_KEY "your_key_here"
+client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+
 def build_prompt(topic,difficulty):
     prompt = f"""
 Generate 5 {difficulty} difficulty question about {topic}.
@@ -40,6 +61,21 @@ Return the response strictly in the following JSON format:
 
 
 
+def generate_quiz(topic, difficulty):
+    prompt = build_prompt(topic, difficulty)
+
+    # Send the request to Claude via the Anthropic API
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=1024,
+        messages=[
+            {"role": "user", "content": prompt}
+        ]
+    )
+
+    # Extract the text content from Claude's response
+    return message.content[0].text
+
 # Commit 1: Create the get_topic function
 # .strip() removes accidental spaces before or after the input
 def get_topic():
@@ -63,3 +99,21 @@ def get_difficulty():
         print("Invalid difficulty. Please enter easy, medium, or hard.")
         return get_difficulty()  # ask again if invalid
     return difficulty
+
+
+
+if __name__ == "__main__":
+    topic = get_topic()
+    difficulty = get_difficulty()
+
+    print("\nGenerating your quiz, please wait...\n")
+
+    try:
+        quiz = generate_quiz(topic, difficulty)
+        print("--- QUIZ ---\n")
+        print(quiz)
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+        
+        #Final version ready for review
+
