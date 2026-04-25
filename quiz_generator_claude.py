@@ -21,10 +21,10 @@ client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 def build_prompt(topic,difficulty):
     prompt = f"""
-    topic = "world science"
-    difficulty = "medium"
+    topic = "{topic}"
+    difficulty = "{difficulty}"
 
-Generate 5 {difficulty} difficulty question about {topic}.
+Generate 5 questions about {topic} at the {difficulty} difficulty level.
 
 ### Role
 are an expert educator who creates quizzes for students. Your task is to generate 5 questions about the topic of {topic} at the {difficulty} difficulty level. Each question should be clear, concise, and relevant to the topic. 
@@ -32,34 +32,34 @@ are an expert educator who creates quizzes for students. Your task is to generat
 Generate a set of 5 multiple choice questions (MCQs) based on a specific topic and difficulty level.
 ### Context
 Topic: {topic}
-Difficulty:[easy, medium, hard]
+Difficulty:["easy "medium" "hard"]
 ### Constraints
 1. Each question must have 4 answer options (A, B, C, D).
 2. Structure: Each question should be followed by its answer options, and the correct answer should be indicated.
 3. Difficulty Levels:
- - Easy: Basic recall questions that test fundamental knowledge of the topic.    - Medium: Questions that require some application of knowledge and understanding of concepts.
-- Hard: Questions that require critical thinking and synthesis of informion from multiple sources.
+ - Easy: Basic recall questions that test fundamental knowledge of the topic.    
+ - Medium: Questions that require some application of knowledge and understanding of concepts.
+ - Hard: Questions that require critical thinking and synthesis of informion from multiple sources.
 4. Accuracy: Ensure that all questions and answers are factually correct and relevant to the specified topic.
 ### Output Format
 Return the response strictly in the following JSON format:
 ```json
-{
+{{
   "questions": [
-    {
+    {{
       "question": "Question text here",
-      "options": {
-        "A": "string",
-        "B": "string",
-        "C": "string",
-        "D": "string"
-      },
-      "correct_answer": "A"  // Indicate the correct option (A, B, C, or D)
-    },
+      "options": {{
+        "A": "text",
+        "B": "text",
+        "C": "text",
+        "D": "text "
+      }},
+      "correct_answer": "A"  
+    }},
     // Repeat for each of the 5 questions
-  ]
-}
-```
-    """
+}}
+ Ensure the JSON is valid and contains exactly 5 questions with the specified structure. Do not include any additional text or explanations outside of the JSON format.
+ """
     return prompt
 
 
