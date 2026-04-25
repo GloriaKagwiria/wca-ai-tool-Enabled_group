@@ -29,7 +29,7 @@ are an expert educator who creates quizzes for students. Your task is to generat
 ### Task
 Generate a set of 5 multiple choice questions (MCQs) based on a specific topic and difficulty level.
 ### Context
-Topic: {World History or Science or Literature}
+Topic: {World Science}
 Difficulty: {easy, medium, hard}
 ### Constraints
 1. Each question must have 4 answer options (A, B, C, D).
