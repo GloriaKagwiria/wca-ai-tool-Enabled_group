@@ -56,4 +56,26 @@ def get_topic():
         if not topic:
             print("Cannot be empty.")
             return get_topic()  # ask again if empty
-        return topic, "Custom"
+        return topic, "Custom"# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 4 — User Input & Validation (R-T-C-C-O)
+# ============================================================
+#
+# COMMIT 2: Create get_count to control number of questions (C)
+#
+# C = Count (how many questions the user wants)
+#
+# NOTE: This builds on Commit 1. Add this function below get_topic().
+# ============================================================
+
+# --- Commit 2: Create get_count ---
+# C — Asks how many questions the user wants (1 to 5).
+# Capped at 5 to keep token usage low and responses fast.
+def get_count():
+    n = input("Number of questions (1-5): ").strip()
+    if not n.isdigit() or not (1 <= int(n) <= 5):
+        print("Enter a number between 1 and 5.")
+        return get_count()  # ask again if invalid
+    return int(n)
+        
