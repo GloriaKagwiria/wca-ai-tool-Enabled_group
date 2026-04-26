@@ -111,3 +111,163 @@ def get_output_file():
     if not f.endswith(".json"):
         f += ".json"
     return f
+    # ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 5 — Main Entry Point & Error Handling
+# ============================================================
+#
+# COMMIT 1: Add display_quiz and save_quiz helper functions
+#
+# HOW TO RUN THIS PROJECT:
+# Make sure all 5 files are in the same folder, then run:
+#   python member5_main.py
+# ============================================================
+
+import json
+from member3_api import generate_quiz
+from member4_input import get_topic, get_count, get_difficulty, get_output_file
+
+# --- Commit 1: Add display_quiz and save_quiz helper functions ---
+
+# Prints the quiz neatly in the terminal for the user to read
+def display_quiz(quiz_data, topic, difficulty):
+    print(f"\n--- QUIZ: {topic.upper()} ({difficulty.upper()}) ---\n")
+    for i, q in enumerate(quiz_data, 1):
+        print(f"Q{i}: {q['q']}")
+        # Loop through each answer option A, B, C, D
+        for letter, option in q["o"].items():
+            print(f"   {letter}. {option}")
+        print(f"   Answer: {q['a']}\n")
+
+# Saves the quiz data to a JSON file with extra metadata
+def save_quiz(quiz_data, topic, difficulty, category, output_file):
+    output = {
+        "topic": topic,
+        "category": category,
+        "difficulty": difficulty,
+        "total_questions": len(quiz_data),
+        "questions": quiz_data
+    }
+    # Write the JSON file with indentation so it's easy to read
+    with open(output_file, "w") as f:
+        json.dump(output, f, indent=2)
+    print(f"Saved to: {output_file}")
+    
+    # ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 5 — Main Entry Point & Error Handling
+# ============================================================
+#
+# COMMIT 2: Wire up all R-T-C-C-O inputs and quiz generation
+#
+# NOTE: This builds on Commit 1. Add this block below the helper functions.
+# ============================================================
+
+import json
+from member3_api import generate_quiz
+from member4_input import get_topic, get_count, get_difficulty, get_output_file
+
+def display_quiz(quiz_data, topic, difficulty):
+    print(f"\n--- QUIZ: {topic.upper()} ({difficulty.upper()}) ---\n")
+    for i, q in enumerate(quiz_data, 1):
+        print(f"Q{i}: {q['q']}")
+        for letter, option in q["o"].items():
+            print(f"   {letter}. {option}")
+        print(f"   Answer: {q['a']}\n")
+
+def save_quiz(quiz_data, topic, difficulty, category, output_file):
+    output = {
+        "topic": topic,
+        "category": category,
+        "difficulty": difficulty,
+        "total_questions": len(quiz_data),
+        "questions": quiz_data
+    }
+    with open(output_file, "w") as f:
+        json.dump(output, f, indent=2)
+    print(f"Saved to: {output_file}")
+
+# --- Commit 2: Wire up all R-T-C-C-O inputs and quiz generation ---
+# The guard ensures this only runs when the file is executed directly,
+# not when it is imported by another script as a module.
+if __name__ == "__main__":
+    print("=== AI QUIZ GENERATOR (Claude) ===")
+
+    # Collect all inputs from Member 4 (R-T-C-C-O)
+    topic, category  = get_topic()       # R = Random, T = Topic, C = Category
+    count            = get_count()       # C = Count of questions
+    difficulty       = get_difficulty()  # Difficulty level
+    output_file      = get_output_file() # O = Output file name
+
+    print("\nGenerating quiz...\n")
+
+    # Generate and display the quiz (error handling added in Commit 3)
+    quiz_data = generate_quiz(topic, difficulty, count)
+    display_quiz(quiz_data, topic, difficulty)
+    save_quiz(quiz_data, topic, difficulty, category, output_file)
+    # ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 5 — Main Entry Point & Error Handling
+# ============================================================
+#
+# COMMIT 3: Add try/except error handling for API failures
+#
+# NOTE: This is the final version of member5_main.py
+#       Replace the previous version with this complete file.
+# ============================================================
+
+import json
+from member3_api import generate_quiz
+from member4_input import get_topic, get_count, get_difficulty, get_output_file
+
+def display_quiz(quiz_data, topic, difficulty):
+    print(f"\n--- QUIZ: {topic.upper()} ({difficulty.upper()}) ---\n")
+    for i, q in enumerate(quiz_data, 1):
+        print(f"Q{i}: {q['q']}")
+        for letter, option in q["o"].items():
+            print(f"   {letter}. {option}")
+        print(f"   Answer: {q['a']}\n")
+
+def save_quiz(quiz_data, topic, difficulty, category, output_file):
+    output = {
+        "topic": topic,
+        "category": category,
+        "difficulty": difficulty,
+        "total_questions": len(quiz_data),
+        "questions": quiz_data
+    }
+    with open(output_file, "w") as f:
+        json.dump(output, f, indent=2)
+    print(f"Saved to: {output_file}")
+
+if __name__ == "__main__":
+    print("=== AI QUIZ GENERATOR (Claude) ===")
+
+    topic, category  = get_topic()
+    count            = get_count()
+    difficulty       = get_difficulty()
+    output_file      = get_output_file()
+
+    print("\nGenerating quiz...\n")
+
+    # --- Commit 3: Add try/except error handling ---
+    try:
+        # Call Member 3's API function to generate the quiz
+        quiz_data = generate_quiz(topic, difficulty, count)
+
+        # Display the quiz in the terminal
+        display_quiz(quiz_data, topic, difficulty)
+
+        # Save the quiz to a JSON file
+        save_quiz(quiz_data, topic, difficulty, category, output_file)
+
+    except json.JSONDecodeError:
+        # Happens if Claude returns something that isn't valid JSON
+        print("Error: Unexpected format returned. Try again.")
+
+    except Exception as e:
+        # Catches any other error e.g. no internet, invalid API key
+        print(f"Something went wrong: {e}")
