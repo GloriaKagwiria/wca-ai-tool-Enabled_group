@@ -4,6 +4,28 @@
 # MEMBER 1 — Project Setup & API Configuration
 # ============================================================
 #
+# COMMIT 2: Configure Anthropic client using environment variable
+#
+# NOTE: This builds on Commit 1. Replace the previous version with this.
+# ============================================================
+
+import anthropic
+import os
+import json
+import random
+
+# --- Commit 2: Configure Anthropic client ---
+# We load the API key from the environment variable ANTHROPIC_API_KEY.
+# Never hardcode your API key directly in the code — it's a security risk.
+# To set it permanently on Windows run:
+#   setx ANTHROPIC_API_KEY "your-key-here"
+client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 1 — Project Setup & API Configuration
+# ============================================================
+#
 # COMMIT 3: Add random topic pool organized by category
 #
 # NOTE: This is the final version of member1_setup.py
