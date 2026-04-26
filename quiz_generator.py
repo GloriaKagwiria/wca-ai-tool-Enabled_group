@@ -1,6 +1,35 @@
 # ============================================================
 # AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
 # ============================================================
+# MEMBER 1 — Project Setup & API Configuration
+# ============================================================
+#
+# COMMIT 3: Add random topic pool organized by category
+#
+# NOTE: This is the final version of member1_setup.py
+#       Replace the previous version with this complete file.
+# ============================================================
+
+import anthropic
+import os
+import json
+import random
+
+client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+# --- Commit 3: Add random topic pool organized by category ---
+# R — These topics are used when the user picks Random or Category mode.
+# Each key is a category and each value is a list of topics inside it.
+RANDOM_TOPICS = {
+    "Science":  ["Human Biology", "Physics", "Chemistry", "Astronomy", "Ecology"],
+    "History":  ["World War 2", "Ancient Egypt", "The Roman Empire", "The Cold War", "African History"],
+    "Tech":     ["Python", "AI", "Cybersecurity", "Web Dev", "Data Science"],
+    "Sports":   ["Football", "Basketball", "Olympics", "Tennis", "Cricket"],
+    "General":  ["Geography", "Math", "Music", "Art", "Religion"],
+}
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
 # MEMBER 2 — Prompt Engineering
 # ============================================================
 #
