@@ -4,6 +4,26 @@
 # MEMBER 2 — Prompt Engineering
 # ============================================================
 #
+# COMMIT 1: Create short base prompt to save tokens
+#
+# NOTE: Run this file together with all other member files.
+#       The main entry point is member5_main.py
+# ============================================================
+
+# Member 1's setup is required before this file runs
+from member1_setup import RANDOM_TOPICS
+
+# --- Commit 1: Create short base prompt to save tokens ---
+# A short prompt means fewer input tokens are sent to the API,
+# which reduces cost and speeds up the response.
+def build_prompt(topic, difficulty, count):
+    return f"Make {count} MCQ on {topic}, difficulty={difficulty}."
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 2 — Prompt Engineering
+# ============================================================
+#
 # COMMIT 2: Add compact JSON format instructions to prompt
 #
 # NOTE: This builds on Commit 1. Replace the previous version with this.
