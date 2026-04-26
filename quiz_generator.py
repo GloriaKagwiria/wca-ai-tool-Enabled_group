@@ -433,3 +433,67 @@ if __name__ == "__main__":
     quiz_data = generate_quiz(topic, difficulty, count)
     display_quiz(quiz_data, topic, difficulty)
     save_quiz(quiz_data, topic, difficulty, category, output_file)
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 5 — Main Entry Point & Error Handling
+# ============================================================
+#
+# COMMIT 3: Add try/except error handling for API failures
+#
+# NOTE: This is the final version of member5_main.py
+#       Replace the previous version with this complete file.
+# ============================================================
+
+import json
+from member3_api import generate_quiz
+from member4_input import get_topic, get_count, get_difficulty, get_output_file
+
+def display_quiz(quiz_data, topic, difficulty):
+    print(f"\n--- QUIZ: {topic.upper()} ({difficulty.upper()}) ---\n")
+    for i, q in enumerate(quiz_data, 1):
+        print(f"Q{i}: {q['q']}")
+        for letter, option in q["o"].items():
+            print(f"   {letter}. {option}")
+        print(f"   Answer: {q['a']}\n")
+
+def save_quiz(quiz_data, topic, difficulty, category, output_file):
+    output = {
+        "topic": topic,
+        "category": category,
+        "difficulty": difficulty,
+        "total_questions": len(quiz_data),
+        "questions": quiz_data
+    }
+    with open(output_file, "w") as f:
+        json.dump(output, f, indent=2)
+    print(f"Saved to: {output_file}")
+
+if __name__ == "__main__":
+    print("=== AI QUIZ GENERATOR (Claude) ===")
+
+    topic, category  = get_topic()
+    count            = get_count()
+    difficulty       = get_difficulty()
+    output_file      = get_output_file()
+
+    print("\nGenerating quiz...\n")
+
+    # --- Commit 3: Add try/except error handling ---
+    try:
+        # Call Member 3's API function to generate the quiz
+        quiz_data = generate_quiz(topic, difficulty, count)
+
+        # Display the quiz in the terminal
+        display_quiz(quiz_data, topic, difficulty)
+
+        # Save the quiz to a JSON file
+        save_quiz(quiz_data, topic, difficulty, category, output_file)
+
+    except json.JSONDecodeError:
+        # Happens if Claude returns something that isn't valid JSON
+        print("Error: Unexpected format returned. Try again.")
+
+    except Exception as e:
+        # Catches any other error e.g. no internet, invalid API key
+        print(f"Something went wrong: {e}")
