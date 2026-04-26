@@ -4,6 +4,29 @@
 # MEMBER 1 — Project Setup & API Configuration
 # ============================================================
 #
+# COMMIT 1: Add project imports
+#
+# HOW TO SET UP:
+# 1. Install libraries: pip install anthropic
+# 2. Set API key:       setx ANTHROPIC_API_KEY "your-key-here"
+# 3. Run the main file: python member5_main.py
+# ============================================================
+
+# --- Commit 1: Add project imports ---
+# anthropic → to talk to Claude AI
+# os        → to securely read the API key from environment
+# json      → to save and parse quiz data
+# random    → to pick random topics and categories
+import anthropic
+import os
+import json
+import random
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 1 — Project Setup & API Configuration
+# ============================================================
+#
 # COMMIT 2: Configure Anthropic client using environment variable
 #
 # NOTE: This builds on Commit 1. Replace the previous version with this.
