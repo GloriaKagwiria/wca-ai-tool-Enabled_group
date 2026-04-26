@@ -1,6 +1,39 @@
 # ============================================================
 # AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
 # ============================================================
+# MEMBER 3 — API Call & Response Handling
+# ============================================================
+#
+# COMMIT 3: Clean and parse JSON response from Claude
+#
+# NOTE: This is the final version of member3_api.py
+#       Replace the previous version with this complete file.
+# ============================================================
+
+import json
+from member1_setup import client
+from member2_prompt import build_prompt
+
+def generate_quiz(topic, difficulty, count):
+    prompt = build_prompt(topic, difficulty, count)
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=600,
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    # --- Commit 3: Clean and parse JSON response ---
+    # Sometimes Claude adds a small amount of extra text before or
+    # after the JSON. We find the "[" and "]" to extract only the
+    # JSON array and then parse it into a Python list.
+    raw = message.content[0].text
+    start = raw.find("[")
+    end = raw.rfind("]") + 1
+    quiz_data = json.loads(raw[start:end])
+    return quiz_data
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
 # MEMBER 4 — User Input & Validation (R-T-C-C-O)
 # ============================================================
 #
