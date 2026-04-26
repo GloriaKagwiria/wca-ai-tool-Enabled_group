@@ -4,6 +4,34 @@
 # MEMBER 3 — API Call & Response Handling
 # ============================================================
 #
+# COMMIT 2: Send prompt to Claude API using haiku model (600 tokens)
+#
+# NOTE: This builds on Commit 1. Replace the pass with this code.
+# ============================================================
+
+import json
+from member1_setup import client
+from member2_prompt import build_prompt
+
+def generate_quiz(topic, difficulty, count):
+
+    # --- Commit 2: Send prompt to Claude API ---
+    # We use claude-haiku — the cheapest and fastest Claude model.
+    # max_tokens=600 limits how long Claude's response can be,
+    # keeping API costs low while still fitting 1-5 questions.
+    prompt = build_prompt(topic, difficulty, count)
+    message = client.messages.create(
+        model="claude-haiku-4-5-20251001",
+        max_tokens=600,
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return message.content[0].text  # raw text — JSON parsing added in Commit 3
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 3 — API Call & Response Handling
+# ============================================================
+#
 # COMMIT 3: Clean and parse JSON response from Claude
 #
 # NOTE: This is the final version of member3_api.py
