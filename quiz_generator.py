@@ -4,6 +4,27 @@
 # MEMBER 3 — API Call & Response Handling
 # ============================================================
 #
+# COMMIT 1: Create generate_quiz function skeleton
+#
+# NOTE: Run this file together with all other member files.
+#       The main entry point is member5_main.py
+# ============================================================
+
+import json
+from member1_setup import client
+from member2_prompt import build_prompt
+
+# --- Commit 1: Create generate_quiz function skeleton ---
+# This function takes topic, difficulty and count as inputs
+# and returns a list of quiz questions parsed from JSON.
+def generate_quiz(topic, difficulty, count):
+    pass  # logic will be added in Commit 2 and Commit 3
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 3 — API Call & Response Handling
+# ============================================================
+#
 # COMMIT 2: Send prompt to Claude API using haiku model (600 tokens)
 #
 # NOTE: This builds on Commit 1. Replace the pass with this code.
