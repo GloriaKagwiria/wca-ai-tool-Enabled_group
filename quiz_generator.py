@@ -338,3 +338,46 @@ def get_output_file():
     if not f.endswith(".json"):
         f += ".json"
     return f
+    # ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 5 — Main Entry Point & Error Handling
+# ============================================================
+#
+# COMMIT 1: Add display_quiz and save_quiz helper functions
+#
+# HOW TO RUN THIS PROJECT:
+# Make sure all 5 files are in the same folder, then run:
+#   python member5_main.py
+# ============================================================
+
+import json
+from member3_api import generate_quiz
+from member4_input import get_topic, get_count, get_difficulty, get_output_file
+
+# --- Commit 1: Add display_quiz and save_quiz helper functions ---
+
+# Prints the quiz neatly in the terminal for the user to read
+def display_quiz(quiz_data, topic, difficulty):
+    print(f"\n--- QUIZ: {topic.upper()} ({difficulty.upper()}) ---\n")
+    for i, q in enumerate(quiz_data, 1):
+        print(f"Q{i}: {q['q']}")
+        # Loop through each answer option A, B, C, D
+        for letter, option in q["o"].items():
+            print(f"   {letter}. {option}")
+        print(f"   Answer: {q['a']}\n")
+
+# Saves the quiz data to a JSON file with extra metadata
+def save_quiz(quiz_data, topic, difficulty, category, output_file):
+    output = {
+        "topic": topic,
+        "category": category,
+        "difficulty": difficulty,
+        "total_questions": len(quiz_data),
+        "questions": quiz_data
+    }
+    # Write the JSON file with indentation so it's easy to read
+    with open(output_file, "w") as f:
+        json.dump(output, f, indent=2)
+    print(f"Saved to: {output_file}")
+    
