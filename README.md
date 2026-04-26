@@ -45,7 +45,7 @@
 3. Run the Application:
 - Execute the main script to start the interactive prompt:
 - bash
-- python quiz_generator_claude.py
+- python quiz_generator.py
   
 4. Follow the Prompts:
 - Enter your topic and difficulty when prompted, and wait for your quiz to generate.
