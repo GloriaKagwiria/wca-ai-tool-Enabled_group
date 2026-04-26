@@ -79,3 +79,35 @@ def get_count():
         return get_count()  # ask again if invalid
     return int(n)
         
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 4 — User Input & Validation (R-T-C-C-O)
+# ============================================================
+#
+# COMMIT 3: Create get_difficulty and get_output_file (O)
+#
+# O = Output file (where to save the JSON)
+#
+# NOTE: This builds on Commit 1 and 2. Add these functions at the bottom.
+# ============================================================
+
+# --- Commit 3: Create get_difficulty and get_output_file ---
+
+# Difficulty validation — only accepts easy, medium, or hard
+def get_difficulty():
+    d = input("Difficulty (easy/medium/hard): ").lower().strip()
+    if d not in ["easy", "medium", "hard"]:
+        print("Invalid. Try again.")
+        return get_difficulty()  # ask again if invalid
+    return d
+
+# O — Output file name where the quiz JSON will be saved
+def get_output_file():
+    f = input("Output filename (Enter for 'quiz.json'): ").strip()
+    if not f:
+        f = "quiz.json"
+    # Make sure the file always ends in .json
+    if not f.endswith(".json"):
+        f += ".json"
+    return f
