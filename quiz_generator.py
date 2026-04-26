@@ -4,6 +4,29 @@
 # MEMBER 2 — Prompt Engineering
 # ============================================================
 #
+# COMMIT 2: Add compact JSON format instructions to prompt
+#
+# NOTE: This builds on Commit 1. Replace the previous version with this.
+# ============================================================
+
+from member1_setup import RANDOM_TOPICS
+
+def build_prompt(topic, difficulty, count):
+
+    # --- Commit 2: Add compact JSON format instructions ---
+    # We tell Claude to reply ONLY in JSON so we can parse it easily.
+    # Short JSON keys like "q", "o", "a" save extra output tokens too.
+    return (
+        f"Make {count} MCQ on {topic}, difficulty={difficulty}. "
+        f"Reply ONLY in JSON array:\n"
+        f'[{{"q":"?","o":{{"A":"","B":"","C":"","D":""}},"a":"A"}}]'
+    )
+# ============================================================
+# AI QUIZ GENERATOR — Group Project (Powered by Claude AI)
+# ============================================================
+# MEMBER 2 — Prompt Engineering
+# ============================================================
+#
 # COMMIT 3: Add difficulty-level instructions to prompt
 #
 # NOTE: This is the final version of member2_prompt.py
